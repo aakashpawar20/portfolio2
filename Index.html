@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aakash Pawar | DevOps Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.6; }
+
+        /* Header & Nav */
+        header { 
+            position: fixed; top: 0; width: 100%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 5%; background: rgba(2, 6, 23, 0.95); 
+            backdrop-filter: blur(10px); z-index: 1000; 
+        }
+        header h1 { font-size: 1.2rem; font-weight: 600; color: #38bdf8; }
+        nav { display: flex; flex-wrap: wrap; justify-content: flex-end; }
+        nav a { margin-left: 15px; text-decoration: none; color: #e2e8f0; font-size: 0.85rem; transition: 0.3s; }
+        nav a:hover { color: #38bdf8; }
+
+        /* Hero Section */
+        .hero { 
+            min-height: 100vh; display: flex; align-items: center; justify-content: center; 
+            gap: 40px; padding: 100px 10% 40px 10%; flex-wrap: wrap; 
+        }
+        .hero-text { flex: 1; min-width: 300px; text-align: left; }
+        .hero-text h2 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 15px; line-height: 1.2; }
+        .hero-text span { color: #38bdf8; }
+        .hero-text p { color: #94a3b8; font-size: 1.1rem; }
+
+        .hero-img { flex: 1; display: flex; justify-content: center; min-width: 100px; }
+        .hero-img img{
+        width:260px;
+        height:260px;
+        border-radius:50%;
+        border:4px solid #38bdf8;
+        box-shadow:0 10px 40px rgba(0,0,0,0.5);
+        object-fit:cover;
+        object-position:top;
+}
+
+        .btn { 
+            display: inline-block; margin-top: 25px; padding: 12px 28px; 
+            border-radius: 8px; background: #38bdf8; color: #020617; 
+            font-weight: 600; text-decoration: none; transition: 0.3s; 
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(56,189,248,0.4); }
+
+        /* Common Section Layout */
+        section { padding: 80px 10%; overflow: hidden; }
+        .section-title { text-align: center; font-size: 2rem; margin-bottom: 40px; position: relative; }
+        .section-title::after { 
+            content: ''; display: block; width: 50px; height: 4px; 
+            background: #38bdf8; margin: 10px auto; border-radius: 2px; 
+        }
+
+        .about { max-width: 800px; margin: auto; text-align: center; color: #94a3b8; font-size: 1.1rem; }
+
+        /* Responsive Grids */
+        .skills { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+            gap: 15px; 
+        }
+        .skill { background: #1e293b; padding: 20px 10px; border-radius: 12px; text-align: center; font-size: 0.9rem; transition: 0.3s; border: 1px solid transparent; }
+        .skill:hover { transform: translateY(-5px); background: #334155; border-color: #38bdf8; }
+
+        .education { max-width: 800px; margin: auto; }
+        .edu-item { background: #1e293b; padding: 25px; border-radius: 10px; margin-bottom: 20px; }
+        .edu-item h3 { color: #38bdf8; margin-bottom: 5px; }
+
+        .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .project { background: #1e293b; padding: 25px; border-radius: 12px; cursor: pointer; transition: 0.3s; border: 1px solid #334155; }
+        .project:hover { transform: translateY(-10px); border-color: #38bdf8; box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
+        .project h3 { color: #38bdf8; margin-bottom: 10px; }
+
+        .socials { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 10px; margin-top: 25px; }
+        .socials a { padding: 8px 16px; background: #1e293b; border-radius: 8px; text-decoration: none; color: #e2e8f0; font-size: 0.85rem; transition: 0.3s; }
+        .socials a:hover { background: #38bdf8; color: #020617; }
+
+        /* Modal Styles */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
+        .modal-content { background: #1e293b; padding: 30px; border-radius: 12px; max-width: 500px; width: 100%; position: relative; }
+        .close { position: absolute; top: 15px; right: 20px; cursor: pointer; font-size: 24px; color: #94a3b8; }
+
+        /* Contact Form */
+        .contact { max-width: 500px; margin: auto; }
+        .contact input, .contact textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #334155; border-radius: 8px; background: #0f172a; color: #fff; outline: none; }
+        .contact input:focus, .contact textarea:focus { border-color: #38bdf8; }
+
+        footer { text-align: center; padding: 40px 20px; background: #020617; color: #94a3b8; font-size: 0.9rem; }
+
+        /* Scroll Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; flex-direction: column; gap: 10px; }
+            nav { justify-content: center; }
+            nav a { margin: 0 8px; font-size: 0.75rem; }
+            .hero { text-align: center; padding-top: 140px; }
+            .hero-text { order: 2; }
+            .hero-img { order: 1; margin-bottom: 20px; }
+            .socials { justify-content: center; }
+            section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Aakash Pawar</h1>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <h2>Hello, I'm <span>Aakash Pawar</span></h2>
+        <p>DevOps & Cloud enthusiast passionate about AWS, Linux, automation and scalable infrastructure.</p>
+        <a href="#projects" class="btn">View Projects</a>
+
+        <div class="socials">
+            <a href="https://github.com/aakashpawar20" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/aakash-pawar-5039212b1/" target="_blank">LinkedIn</a>
+            <a href="#" target="_blank">Twitter</a>
+        </div>
+    </div>
+
+    <div class="hero-img">
+        <img src="profile.jpeg" alt="Aakash Pawar">
+    </div>
+</section>
+
+<section id="about" class="reveal">
+    <h2 class="section-title">About Me</h2>
+    <p class="about">I am currently pursuing my MCA and building my career in Cloud Computing and DevOps. I enjoy working with AWS, Linux systems, containerization and CI/CD pipelines.</p>
+</section>
+
+<section id="skills" class="reveal">
+    <h2 class="section-title">Core DevOps & Cloud Skills</h2>
+    <div class="skills">
+        <div class="skill">Linux Administration</div>
+        <div class="skill">AWS (EC2, S3, IAM, VPC)</div>
+        <div class="skill">Docker</div>
+        <div class="skill">Kubernetes</div>
+        <div class="skill">CI/CD Pipelines</div>
+        <div class="skill">Git & GitHub</div>
+        <div class="skill">Terraform</div>
+        <div class="skill">Shell Scripting</div>
+        <div class="skill">Monitoring</div>
+        <div class="skill">Networking</div>
+        <div class="skill">Nginx / Apache</div>
+        <div class="skill">Cloud Security</div>
+    </div>
+</section>
+
+<section id="education" class="reveal">
+    <h2 class="section-title">Education</h2>
+    <div class="education">
+        <div class="edu-item">
+            <h3>Master of Computer Application (MCA)</h3>
+            <p><strong>ASM NextGen Technical Campus</strong> | Pursuing</p>
+        </div>
+        <div class="edu-item">
+            <h3>BBA (Computer Application)</h3>
+            <p><strong>Savitribai Phule Pune University</strong> | 2020-2025</p>
+            <p style="margin-top:10px; font-size: 0.9rem; color: #94a3b8;">CGPA: 7.62. Focused on programming languages, data structures, and web technologies.</p>
+        </div>
+        <div class="edu-item">
+            <h3>Higher Secondary (12th)</h3>
+            <p><strong>Maharashtra State Board</strong> | 68%</p>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="reveal">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects">
+        <div class="project" onclick="openProject('ec2')">
+            <h3>AWS EC2 Deployment</h3>
+            <p>Deploying Linux-based web servers with custom security configurations.</p>
+        </div>
+        <div class="project" onclick="openProject('docker')">
+            <h3>Dockerized Web App</h3>
+            <p>Containerizing applications for consistent deployment across environments.</p>
+        </div>
+        <div class="project" onclick="openProject('cicd')">
+            <h3>CI/CD Pipeline</h3>
+            <p>Automating builds and deployments using GitHub Actions.</p>
+        </div>
+    </div>
+</section>
+
+<section id="resume" class="reveal">
+    <h2 class="section-title">Resume</h2>
+    <div style="text-align:center">
+        <p style="color:#94a3b8;margin-bottom:20px">Interested in working with me? Download my full CV.</p>
+        <a href="DevOps.pdf" class="btn" target="_blank">Download Resume</a>
+    </div>
+</section>
+
+<section id="contact" class="reveal">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact">
+        <form action="https://formspree.io/f/xlgplqay" method="POST">
+            
+            <label style="display:block; margin-bottom:5px; font-size:0.9rem; color:#38bdf8;">Your Name</label>
+            <input type="text" name="name" placeholder="Enter your full name" required>
+
+            <label style="display:block; margin-bottom:5px; font-size:0.9rem; color:#38bdf8;">Your Email</label>
+            <input type="email" name="email" placeholder="email@example.com" required>
+
+            <label style="display:block; margin-bottom:5px; font-size:0.9rem; color:#38bdf8;">Your Message</label>
+            <textarea name="message" rows="4" placeholder="How can I help you?" required></textarea>
+
+            <input type="hidden" name="_subject" value="New Portfolio Inquiry!">
+            
+            <button type="submit" class="btn" style="width:100%; border:none; cursor:pointer;">
+                Send Message
+            </button>
+        </form>
+    </div>
+</section>
+
+<div class="modal" id="projectModal" onclick="closeModalOutside(event)">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">×</span>
+        <h3 id="modalTitle" style="color:#38bdf8; margin-bottom:15px;"></h3>
+        <p id="modalDesc" style="color:#e2e8f0;"></p>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Aakash Pawar | DevOps Portfolio</p>
+</footer>
+
+<script>
+    // Scroll Reveal
+    window.addEventListener('scroll', reveal);
+    function reveal() {
+        var reveals = document.querySelectorAll('.reveal');
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            if (elementTop < windowHeight - 100) {
+                reveals[i].classList.add('active');
+            }
+        }
+    }
+    // Run once on load
+    reveal();
+
+    // Modal Logic
+    function openProject(project) {
+        var title = document.getElementById('modalTitle');
+        var desc = document.getElementById('modalDesc');
+
+        const projectData = {
+            'ec2': {
+                title: 'AWS EC2 Deployment',
+                desc: 'Configured VPC, Security Groups, and IAM roles. Launched Amazon Linux 2 instances and automated Nginx installation via User Data scripts.'
+            },
+            'docker': {
+                title: 'Dockerized Web Application',
+                desc: 'Created Dockerfiles for multi-stage builds to optimize image size. Managed container orchestration and local development environments.'
+            },
+            'cicd': {
+                title: 'CI/CD Pipeline',
+                desc: 'Implemented automated testing and deployment workflows using GitHub Actions, ensuring code quality before production pushes.'
+            }
+        };
+
+        title.innerText = projectData[project].title;
+        desc.innerText = projectData[project].desc;
+        document.getElementById('projectModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('projectModal').style.display = 'none';
+    }
+
+    function closeModalOutside(e) {
+        if (e.target.id === 'projectModal') closeModal();
+    }
+</script>
+
+</body>
+</html>
