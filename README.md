@@ -69,7 +69,7 @@ If you'd like to connect with me:
 
 - GitHub: https://github.com/yourusername
 - LinkedIn: https://linkedin.com/in/yourprofile
-- Email: your-email@example.com
+- Email: pawaraakash2354@gmail.com
 
 ---
 
